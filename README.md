@@ -7,7 +7,7 @@ The tool is three part.
 2. analyzer.sh, utilizes Binwalk to extract the firmware and perform analysis of cryptographic material.
 3. comitter.sh, sophisitcates intermedatiate results from the analyzer and looks for key-pairs. There lies responibility for this in the future. 
 
-KeySeeker is a Master Thesis project by Jens Michael Sarro Fastrup of IT-Univeristy of Copenhagen. This project is under supervision of Carsten Schürmann, Professor of Computer Science @ ITU
+KeySeeker is a Master Thesis project by Jens Michael Sarro Fastrup of IT-Univeristy of Copenhagen. This project is under supervision of Carsten Schürmann, Professor of Computer Science @ ITU.
 
 ##Setup
 - Clone the repo.
