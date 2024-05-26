@@ -8,3 +8,13 @@ The tool is three part.
 3. comitter.sh, sophisitcates intermedatiate results from the analyzer and looks for key-pairs. There lies responibility for this in the future. 
 
 KeySeeker is a Master Thesis project by Jens Michael Sarro Fastrup of IT-Univeristy of Copenhagen. This project is under supervision of Carsten Schürmann, Professor of Computer Science @ ITU
+
+##Setup
+- Clone the repo.
+- setup virtual environment and download relevant packages as seen in requirements.txt
+- This tool is developed on a Linux-based platform, so no guarantees for Windows or macOS.
+- adjust scraper.py to your vendor page, check and see what url-links/keywords are connected to your type.
+- If successful, run analyser.sh. Depending on the size and amount firmware, this can take time.
+- If successful, you can either browsw intermediate results, or run comitter.sh to collect key-pairs.
+
+  
