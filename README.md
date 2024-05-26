@@ -1,6 +1,6 @@
 # KeySeeker
 KeySeeker aims at creating a safer space for developers and enables security to asses if their firmware are leaking cryptographic material publicy on the web.
-.Before using this tool, ensure you have the required permissions and consider the legalities. The author takes no responsibility in misuse of this software. 
+Before using this tool, ensure you have the required permissions and consider the legalities. The author takes no responsibility in misuse of this software as it is purely meant for research only. 
 
 The tool is three part. 
 1. scraper.py, utilizes Selenium to dynamically scrape firmware products from a page, take a download center.
