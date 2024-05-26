@@ -9,7 +9,7 @@ The tool is three part.
 
 KeySeeker is a Master Thesis project by Jens Michael Sarro Fastrup of IT-Univeristy of Copenhagen. This project is under supervision of Carsten Schürmann, Professor of Computer Science @ ITU.
 
-##Setup
+## Setup
 - Clone the repo.
 - setup virtual environment and download relevant packages as seen in requirements.txt
 - This tool is developed on a Linux-based platform, so no guarantees for Windows or macOS.
