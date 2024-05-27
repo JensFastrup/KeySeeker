@@ -1,3 +1,6 @@
+![KeySeeker](https://github.com/JensFastrup/KeySeeker/blob/main/keyseeker.PNG)
+
+
 # KeySeeker
 KeySeeker aims at creating a safer space for developers and enables security to asses if their firmware are leaking cryptographic material publicy on the web.
 Before using this tool, ensure you have the required permissions and consider the legalities. The author takes no responsibility in misuse of this software as it is purely meant for research only. 
