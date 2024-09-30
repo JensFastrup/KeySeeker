@@ -9,11 +9,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import logging
 
-#Phase 1: Scraping. 
-#Case: The TP-link Download Center.
+# Phase 1: Scraping. 
+# Case: The TP-Link Download Center.
+
+# URLs and Selectors for TP-Link - this might vary from page to page. 
+MAIN_URL = 'https://www.tp-link.com/dk/support/download/'
+PRODUCT_LINK_SELECTOR = 'a[href^="/dk/support/download/"]'
+FIRMWARE_LINK_SELECTOR = 'a[href$=".zip"]' # consider adding more file-types depending on scope. 
 
 
-# Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def setup_driver():
@@ -23,17 +27,17 @@ def setup_driver():
     driver = webdriver.Chrome(service=service, options=options)
     return driver
 
-def get_product_links(driver, main_url):
+def get_product_links(driver, main_url, product_link_selector):
     try:
         logging.info(f"Accessing main download page: {main_url}")
         driver.get(main_url)
         product_links = []
 
         WebDriverWait(driver, 20).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[href^="/dk/support/download/"]'))
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, product_link_selector))
         )
 
-        elements = driver.find_elements(By.CSS_SELECTOR, 'a[href^="/dk/support/download/"]')
+        elements = driver.find_elements(By.CSS_SELECTOR, product_link_selector)
         for elem in elements:
             product_link = elem.get_attribute('href')
             if product_link.startswith('/'):
@@ -47,17 +51,17 @@ def get_product_links(driver, main_url):
         logging.error(f"Error getting product links: {e}")
         return []
 
-def get_firmware_links(driver, product_url):
+def get_firmware_links(driver, product_url, firmware_link_selector):
     try:
         logging.info(f"Accessing product page: {product_url}")
         driver.get(product_url)
         firmware_links = []
 
         WebDriverWait(driver, 20).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[href$=".zip"]'))
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, firmware_link_selector))
         )
 
-        elements = driver.find_elements(By.CSS_SELECTOR, 'a[href$=".zip"]')
+        elements = driver.find_elements(By.CSS_SELECTOR, firmware_link_selector)
         for elem in elements:
             firmware_link = elem.get_attribute('href')
             firmware_links.append(firmware_link)
@@ -83,13 +87,13 @@ def download_file(url, folder='firmware_downloads'):
     except Exception as e:
         logging.error(f"Error downloading file {url}: {e}")
 
-def scrape_firmware(main_url):
+def scrape_firmware(main_url, product_link_selector, firmware_link_selector):
     driver = setup_driver()
     try:
-        product_links = get_product_links(driver, main_url)
+        product_links = get_product_links(driver, main_url, product_link_selector)
         for product_link in product_links:
             logging.info(f'Starting to scrape firmware from {product_link}')
-            firmware_links = get_firmware_links(driver, product_link)
+            firmware_links = get_firmware_links(driver, product_link, firmware_link_selector)
             for firmware_link in firmware_links:
                 logging.info(f'Downloading firmware from {firmware_link}')
                 download_file(firmware_link)
@@ -98,7 +102,6 @@ def scrape_firmware(main_url):
         driver.quit()
 
 if __name__ == '__main__':
-    MAIN_URL = 'https://www.tp-link.com/dk/support/download/'
-    logging.info("Starting the firmware scraping process.")
-    scrape_firmware(MAIN_URL)
-    logging.info("Firmware scraping process completed.")
+    logging.info("Starting the KeySeeker scraping process.")
+    scrape_firmware(MAIN_URL, PRODUCT_LINK_SELECTOR, FIRMWARE_LINK_SELECTOR)
+    logging.info("Scraping process completed.")
