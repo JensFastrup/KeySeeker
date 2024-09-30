@@ -26,3 +26,12 @@ KeySeeker is a Master Thesis project by Jens Michael Sarro Fastrup of IT-Univeri
 - Recommendably, use badkeys to analyze keys collected to expose known vulnerabilities, such as weak exponent or leaked keys. Link: [badkeys](https://github.com/badkeys/badkeys)
 
 - Dive deep in the firmware, consider analyzing the firmware with FACT, read more: [FACT](https://github.com/fkie-cad/FACT_core)
+
+## Challenges & Considerations
+- How do we balance scraping *all* material vs running efficient when considering large domains? 
+
+- How do we ensure that all cryptographic material has been sufficiently collected - and how can we learn of their uses? 
+
+- Can the collected material be organized to offer better knowledge of the structure/infrastructure of the product?
+
+ 
